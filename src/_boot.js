@@ -94,6 +94,7 @@ if (!fs.existsSync(settingsFile)) {
         forceFullscreen: true,
         windowWidth: 1280,
         windowHeight: 720,
+        openDevTools: false,
         allowWindowed: false,
         excludeThreadsFromToplist: true,
         hideDotfiles: false,
@@ -204,7 +205,7 @@ function createWindow(settings) {
     }
 
     win = new BrowserWindow({
-        title: "eDEX-UI",
+        title: "xDEX-UI",
         x: winX,
         y: winY,
         width: winWidth,
@@ -239,6 +240,14 @@ function createWindow(settings) {
 
     signale.complete("Frontend window created!");
     win.show();
+    if (settings.openDevTools) {
+        try {
+            win.webContents.openDevTools({ mode: 'detach' });
+            signale.info('Browser devtools opened (detach mode)');
+        } catch (e) {
+            signale.warn('Could not open devtools:', e.message || e);
+        }
+    }
     if (!settings.allowWindowed) {
         win.setResizable(false);
     } else if (!require(lastWindowStateFile)["useFullscreen"]) {
@@ -257,6 +266,10 @@ app.on('ready', async () => {
         signale.info('CLI: --windowed detected; launching windowed');
         settings.forceFullscreen = false;
         settings.allowWindowed = true;
+    }
+    if (cliArgs.includes('--devtools') || cliArgs.includes('-d')) {
+        signale.info('CLI: --devtools detected; opening browser devtools');
+        settings.openDevTools = true;
     }
     signale.pending(`Resolving shell path...`);
     settings.shell = await which(settings.shell).catch(e => { throw(e) });
