@@ -104,10 +104,15 @@
     "clean-css": "5.3.3",
     "electron": "^36.8.1",
     "electron-builder": "^26.0.12",
+<<<<<<< HEAD
     "mime-types": "^3.0.1",
     "node-abi": "4.24.0",
+=======
+    "mime-types": "^3.0.2",
+    "node-abi": "4.15.0",
+>>>>>>> ecb1445edd55c428311372f5e957d9c6ec6953a7
     "node-json-minify": "3.0.0",
-    "terser": "5.44.0"
+    "terser": "5.44.1"
   },
   "optionalDependencies": {
     "cson-parser": "4.0.9"
