@@ -246,7 +246,7 @@ function displayLine() {
 
     switch (true) {
         case i === 2:
-            bootScreen.innerHTML += `eDEX-UI Kernel version ${remote.app.getVersion()} boot at ${Date().toString()}; root:xnu-1699.22.73~1/RELEASE_X86_64`;
+            bootScreen.innerHTML += `xDEX-UI Kernel version ${remote.app.getVersion()} boot at ${Date().toString()}; root:xnu-1699.22.73~1/RELEASE_X86_64`;
         case i === 4:
             setTimeout(displayLine, 500);
             break;
@@ -291,7 +291,7 @@ async function displayTitleScreen() {
 
     document.body.setAttribute("class", "");
     bootScreen.setAttribute("class", "center");
-    bootScreen.innerHTML = "<h1>eDEX-UI</h1>";
+    bootScreen.innerHTML = "<h1>xDEX-UI</h1>";
     let title = document.querySelector("section > h1");
 
     await _delay(200);
@@ -805,7 +805,7 @@ window.openSettings = async () => {
             { label: "Open in External Editor", action: `electron.shell.openPath('${settingsFile}');electronWin.minimize();` },
             { label: "Save to Disk", action: "window.writeSettingsFile()" },
             { label: "Reload UI", action: "window.location.reload(true);" },
-            { label: "Restart eDEX", action: "remote.app.relaunch();remote.app.quit();" }
+            { label: "Restart xDEX-UI", action: "remote.app.relaunch();remote.app.quit();" }
         ]
     }, () => {
         // Link the keyboard back to the terminal
